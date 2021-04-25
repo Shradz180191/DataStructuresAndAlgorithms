@@ -1,0 +1,68 @@
+from random import seed, randint
+import math
+    
+
+def main() : 
+    seed()
+    
+    ballCount = randint(10,100)
+    turn = randint(0,1)
+    mode = randint(0,1)
+    
+    print("***** Game of NIM Starts *****")
+    while ballCount > 0:        # if there are still balls left, then keep playing
+        print("\n\n\tBall count:", ballCount)
+        if turn == 0:           # player turn
+            print("\n\tPLAYER TURN")
+            # TODO: call the playerTurn function
+            if ballCount == 1:
+                break
+            else:
+                b = playerTurn()
+                if (b<1) or (b>int(ballCount/2)):
+                    print('\n\tinvalid turn. Try again!')
+                    b = playerTurn()
+                ballCount = ballCount - b
+                turn = 1            # switch the turn 1 - for computer turn next
+        else:                   # computer turn
+            if ballCount == 1:
+                break
+            else:
+                
+                if mode == 0:       # computer smart mode
+                    print("\n\tCOMPUTER TURN - Mode: Smart")
+                    # TODO: call the computerSmart function
+                    ballCount = ballCount - computerSmart(ballCount)
+
+                else:               # computer hard mode
+                    print("\n\tCOMPUTER TURN - Mode: Stupid")
+                    # TODO : call the computerStupid function
+                                    # computer easy mode
+                    ballCount = ballCount - computerStupid(ballCount)
+
+                turn = 0
+
+    print('\n\nGame ends!!!')
+    print('\n\nballcount=',ballCount)
+    if turn == 0:
+        print("computer wins")
+    else:
+        print("player wins")
+
+        
+def computerSmart(bcnt)  :
+    b = int(math.log(bcnt+1,2))
+    print('\n\tBalls picked = ', b)
+    return b
+
+def computerStupid(bcnt):
+    if bcnt > 0 :
+        b = randint(1, int(bcnt/2))
+    print('\n\tBalls picked = ', b)
+    return b
+
+def playerTurn() :
+    b = input("\n\tEnter an amount:")
+    return int(b)
+
+main()
