@@ -4,11 +4,6 @@ Write a Box class whose init method takes three parameters and uses them to init
 Write a separate function named box_sort (not part of the Box class) that uses insertion sort to sort a list of Boxes from greatest volume to least volume.
 '''
 
-#Andrew Naegeli
-#CS162
-#Project-4b
-#April 26, 2021
-
 class Box():
     def __init__(self, length, width, height):
         self._length = length
