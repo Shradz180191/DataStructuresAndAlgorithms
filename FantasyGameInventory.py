@@ -35,3 +35,71 @@ You can use the for loop to loop through all of the keys in the dictionary
 
 Your program should call the function from the main function
 '''
+
+inventory = {'gold': 1
+                , 'mana potions': 3
+                , 'healing potion': 6
+                , 'arrow': 12
+                , 'dagger': 1
+                , 'sword': 3
+            }
+
+def displayInventory(inventory):
+    '''
+        description: display items and number of items in an inventory
+        input: dictionary of inventory
+        output: prints the list and count of items
+    '''
+    count = 0
+
+    if len(inventory) == 0:
+        print('\nInventory is Empty!!')
+
+    else:
+        for i in inventory:
+            print(inventory[i],' ',i)
+            count = count + inventory[i]
+
+    print('\nTotal number of items: ',count)
+
+
+def add_to_inventory(inventory=None):
+    '''
+        description: add item and count to the inventory
+        input: inventory
+        output: item added to the inventory
+    '''
+    item = input('\nName of item: \t')
+    n = int(input('\nCount of item: \t'))
+    if inventory == None:
+        inventory = {}
+    
+    inventory[item] = n
+    return inventory
+
+def menu():
+    print('\n1. Display Inventory')
+    print('\n2. Add to inventory')
+    c = int(input('\n\tEnter you choice (1/2):\t'))
+    if c not in (1,2):
+        print('\n Invalid choice!')
+        menu()
+    else:
+        return c
+
+def main():
+
+    inventory = {}
+    choice = 'y'
+    while(choice == 'y'):
+        c = menu()
+        if c == 1:
+            displayInventory(inventory)
+            choice = input('\nContinue (y/n):\t')
+        elif c == 2:
+            inventory = add_to_inventory()
+            choice = input('\nContinue (y/n):\t')
+        else:
+            break
+
+main()
